@@ -11,6 +11,7 @@ namespace MessageBoard.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Services;
+    using Data;
 
     public static class NinjectWebCommon 
     {
@@ -63,6 +64,8 @@ namespace MessageBoard.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IMailService>().To<MailService>().InRequestScope();
+            kernel.Bind<MessageBoardContext>().To<MessageBoardContext>().InRequestScope();
+            kernel.Bind<IMessageBoardRepository>().To<MessageBoardRepository>().InRequestScope();
         }        
     }
 }
