@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+}
+
+<h2>Contact</h2>
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<div>
+    <form class="form-horizontal" method="post">
+        <fieldset>
+            <div>
+                <label class="control-label" for="name">Name</label>
+                <div>
+                    <input type="text" id="name" name="name" data-val="true" data-val-required="*" />
+                    <span class="field-validation-valid" data-valmsg-for="name" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div>
+                <label class="control-label" for="email">Email</label>
+                <div>
+                    <input type="text" id="email" name="email" data-val="true" data-val-required="*" data-val-email="Email not valid" />
+                    <span class="field-validation-valid" data-valmsg-for="email" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div>
+                <label class="control-label" for="website">Website</label>
+                <div>
+                    <input type="text" id="website" name="website" data-val="true" data-val-required="*" />
+                    <span class="field-validation-valid" data-valmsg-for="website" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div>
+                <label class="control-label" for="comment">Message</label>
+                <div>
+                    <textarea id="comment" rows="3" name="comment" data-val="true" data-val-required="*"></textarea>
+                    <span class="field-validation-valid" data-valmsg-for="comment" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn">Submit</button>
+                @if (ViewBag.MailSent != null && ViewBag.MailSent)
+                {
+                    <div>Mail sent!!!</div>
+                }
+            </div>
+        </fieldset>
+    </form>
+</div>
