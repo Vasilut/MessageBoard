@@ -5,24 +5,22 @@ var app = angular.module("appLuc", []);
 (function (app) {
     "use strict";
     app.controller("secondIndexController", function ($scope, $http) {
-        $scope.name = "Lucian Vasilut";
+        $scope.dataCount = 0;
+        $scope.data = [];
+        $scope.isBusy = true;
 
-        $scope.data = [
-            {
-                title: "This is a message",
-                body: "I'm right about this",
-                created: "4/24/2013"
-            },
-            {
-                title: "This is a second message",
-                body: "I'm right about this second",
-                created: "4/24/2013"
-            },
-            {
-                title: "This is a third message",
-                body: "I'm right about this third",
-                created: "4/24/2013"
-            },
-        ]
+        $http.get("http://localhost:39210/api/v1/topics")
+        .then(function (result) {
+            //succes
+            angular.copy(result.data, $scope.data);
+            $scope.dataCount = result.data.length;
+        },
+        function () {
+            //error
+            alert("Something bad happened");
+        }
+        ).then(function () {
+            $scope.isBusy = false;
+        });
     });
 })(app);
